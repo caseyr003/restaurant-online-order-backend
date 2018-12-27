@@ -1,5 +1,6 @@
 import json
 from flask import Flask, request, jsonify
+from flask_cors import cross_origin
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -23,6 +24,7 @@ app = Flask(__name__)
 
 # api endpoint for orders
 @app.route('/orders', methods=['GET', 'POST'])
+@cross_origin()
 def orders():
     if request.method == 'POST':
         # get data from post request
@@ -35,7 +37,7 @@ def orders():
             session.add(new_order)
             session.commit()
             # return success status and new order
-            return jsonify(status=201, item=new_order.serialize)
+            return jsonify(status=201, order=new_order.serialize)
         else:
             # return error status
             return jsonify(status=400)
