@@ -1,0 +1,28 @@
+# Mac files
+.DS_Store
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtualenv
+bin/
+include/
+lib/
+pip-selfcheck.json
+
+# Python/DB
+__pycache__
+.idea
+.Python
+
+# Sample DB
+sample.db
+sample.db-journal
+restaurant-online-order.db
+restaurant-online-order.db-journal
