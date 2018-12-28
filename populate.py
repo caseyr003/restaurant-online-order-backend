@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database import Base, Item, Order, User
+from database import Base, User, Order
 
 engine = create_engine('sqlite:///restaurant-online-order.db')
 
@@ -17,17 +17,8 @@ session = DBSession()
 user01 = User(name="Sample User01")
 session.add(user01)
 
-order01 = Order(name="Favorite Order", user=user01, cost=4.90)
-
-lettuce01 = Item(order=order01, name="Lettuce", cost=0.50,
-              description="lettuce", )
-session.add(lettuce01)
-cheese01 = Item(order=order01, name="Cheese", cost=0.30,
-              description="cheese")
-session.add(cheese01)
-meat01 = Item(order=order01, name="Meat", cost=1.10,
-              description="meat")
-session.add(meat01)
+order01 = Order(user=user01, cost=4.90, lettuce=1, cheese=1, bacon=0, meat=1)
+session.add(order01)
 
 # Commit data to database
 session.commit()

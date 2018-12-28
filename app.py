@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database import Base, User, Order, Item
+from database import Base, User, Order
 
 # declare constants
 HOST = '0.0.0.0'
@@ -29,11 +29,14 @@ def orders():
     if request.method == 'POST':
         # get data from post request
         data = request.get_json()
-        if data.keys() >= {'name', 'cost'}:
+        if data.keys() >= {'customer', 'cost', 'items'}:
             # create new order
-            new_order = Order(user_id=1,
-                              name=data['name'],
-                              cost=data['cost'])
+            new_order = Order(user_id=data['customer']['id'],
+                              cost=data['cost'],
+                              lettuce=data['items']['lettuce'],
+                              cheese=data['items']['cheese'],
+                              bacon=data['items']['bacon'],
+                              meat=data['items']['meat'],)
             session.add(new_order)
             session.commit()
             # return success status and new order
