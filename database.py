@@ -41,10 +41,12 @@ class Order(Base):
             'cost': self.cost,
             'user_name': self.user.name,
             'user_id': self.user.id,
-            'lettuce': self.lettuce,
-            'cheese': self.cheese,
-            'bacon': self.bacon,
-            'meat': self.meat
+            'items': {
+                'lettuce': self.lettuce,
+                'cheese': self.cheese,
+                'bacon': self.bacon,
+                'meat': self.meat
+            }
         }       
 
 
