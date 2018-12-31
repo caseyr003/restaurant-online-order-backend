@@ -50,6 +50,21 @@ def orders():
         return jsonify(status=200, orders=[i.serialize for i in orders])
 
 
+# api endpoint for initial items
+@app.route('/items')
+@cross_origin()
+def items():
+        # get initial items
+        return jsonify(
+            items={
+                'lettuce':1, 
+                'cheese':1, 
+                'bacon':0, 
+                'meat':1
+            }
+        )
+
+
 if __name__ == '__main__':
     app.run(host=HOST,
             debug=True,
